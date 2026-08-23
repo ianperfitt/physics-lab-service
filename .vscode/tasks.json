@@ -1,0 +1,11 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "kill-port-8080",
+      "type": "shell",
+      "command": "pid=$(lsof -ti tcp:8080); if [ -n \"$pid\" ]; then kill $pid; fi",
+      "problemMatcher": []
+    }
+  ]
+}

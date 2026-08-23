@@ -1,0 +1,41 @@
+package com.juniortosenior.service;
+
+import java.time.Instant;
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class RenderingService {
+
+  private final RenderingRepository renderingRepository;
+
+  public RenderingService(RenderingRepository renderingRepository) {
+    this.renderingRepository = renderingRepository;
+  }
+
+  public RenderingData getSsrData() {
+    return getData("ssr");
+  }
+
+  public RenderingData getSsgData() {
+    return getData("ssg");
+  }
+
+  public RenderingData getIsrData() {
+    return getData("isr");
+  }
+
+  public RenderingData getCsrData() {
+    return getData("csr");
+  }
+
+  private RenderingData getData(String mode) {
+    RenderingRepository.RenderingTemplate template = renderingRepository.findByMode(mode)
+        .orElseThrow(() -> new IllegalArgumentException("Unknown rendering mode: " + mode));
+    List<RenderingData.Item> items = java.util.stream.IntStream.range(0, template.itemNames().size())
+        .mapToObj(index -> new RenderingData.Item(index + 1, template.itemNames().get(index)))
+        .toList();
+    return new RenderingData(template.message(), Instant.now(), items);
+  }
+}
