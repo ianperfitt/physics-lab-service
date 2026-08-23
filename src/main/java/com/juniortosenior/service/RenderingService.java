@@ -3,6 +3,7 @@ package com.juniortosenior.service;
 import java.time.Instant;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -10,6 +11,7 @@ public class RenderingService {
 
   private final RenderingRepository renderingRepository;
 
+  @Autowired
   public RenderingService(RenderingRepository renderingRepository) {
     this.renderingRepository = renderingRepository;
   }
