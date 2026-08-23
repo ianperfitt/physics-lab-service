@@ -2,6 +2,7 @@ package com.juniortosenior.service;
 
 import java.time.Instant;
 import java.util.List;
+import java.util.stream.IntStream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,7 +36,7 @@ public class RenderingService {
   private RenderingData getData(String mode) {
     RenderingRepository.RenderingTemplate template = renderingRepository.findByMode(mode)
         .orElseThrow(() -> new IllegalArgumentException("Unknown rendering mode: " + mode));
-    List<RenderingData.Item> items = java.util.stream.IntStream.range(0, template.itemNames().size())
+    List<RenderingData.Item> items = IntStream.range(0, template.itemNames().size())
         .mapToObj(index -> new RenderingData.Item(index + 1, template.itemNames().get(index)))
         .toList();
     return new RenderingData(template.message(), Instant.now(), items);
