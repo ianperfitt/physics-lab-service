@@ -1,4 +1,4 @@
-package com.juniortosenior.service;
+package com.physicslab.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;

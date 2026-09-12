@@ -3,10 +3,10 @@
   "configurations": [
     {
       "type": "java",
-      "name": "Debug JuniorToSeniorService",
+      "name": "Debug PhysicsLabService",
       "request": "launch",
-      "mainClass": "com.juniortosenior.service.JuniorToSeniorServiceApplication",
-      "projectName": "junior-to-senior-service",
+      "mainClass": "com.physicslab.service.PhysicsLabServiceApplication",
+      "projectName": "physics-lab-service",
       "preLaunchTask": "kill-port-8080"
     }
   ]

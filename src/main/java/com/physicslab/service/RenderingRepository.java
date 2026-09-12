@@ -1,4 +1,4 @@
-package com.juniortosenior.service;
+package com.physicslab.service;
 
 import java.util.List;
 import java.util.Map;

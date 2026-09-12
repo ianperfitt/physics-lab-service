@@ -10,11 +10,11 @@
     <relativePath/>
   </parent>
 
-  <groupId>com.juniortosenior</groupId>
-  <artifactId>junior-to-senior-service</artifactId>
+  <groupId>com.physicslab</groupId>
+  <artifactId>physics-lab-service</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>junior-to-senior-service</name>
-  <description>API service for the junior-to-senior rendering examples</description>
+  <name>physics-lab-service</name>
+  <description>API service for the physics-lab rendering examples</description>
 
   <properties>
     <java.version>17</java.version>
