@@ -20,35 +20,35 @@ public class ShortestClearPathService {
     int rows = grid.length;
     int columns = grid[0].length;
 
-    if (grid[0][0] == 1 || grid[rows - 1][columns - 1] == 1) {
+    if (grid[0][0] == 1) {
       return new ShortestClearPathResponse(-1);
-    }
-
-    if (rows == 1 && columns == 1) {
-      return new ShortestClearPathResponse(1);
     }
 
     boolean[][] seen = new boolean[rows][columns];
     Queue<State> queue = new LinkedList<>();
-    queue.offer(new State(0, 0, 1));
+    queue.add(new State(0, 0, 1));
     seen[0][0] = true;
 
     while (!queue.isEmpty()) {
-      State state = queue.poll();
-      if (state.row == rows - 1 && state.col == columns - 1) {
-        return new ShortestClearPathResponse(state.steps);
+      State state = queue.remove();
+      int row = state.row;
+      int col = state.col;
+      int steps = state.steps;
+
+      if (row == rows - 1 && col == columns - 1) {
+        return new ShortestClearPathResponse(steps);
       }
 
       for (int[] direction : DIRECTIONS) {
-        int nextRow = state.row + direction[0];
-        int nextCol = state.col + direction[1];
+        int nextRow = row + direction[0];
+        int nextCol = col + direction[1];
 
         if (!isValid(nextRow, nextCol, rows, columns, grid) || seen[nextRow][nextCol]) {
           continue;
         }
 
         seen[nextRow][nextCol] = true;
-        queue.offer(new State(nextRow, nextCol, state.steps + 1));
+        queue.add(new State(nextRow, nextCol, steps + 1));
       }
     }
 
