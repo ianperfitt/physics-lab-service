@@ -1,6 +1,6 @@
 package com.physicslab.service;
 
-import java.util.ArrayDeque;
+import java.util.LinkedList;
 import java.util.Queue;
 
 import org.springframework.stereotype.Service;
@@ -29,7 +29,7 @@ public class ShortestClearPathService {
     }
 
     boolean[][] seen = new boolean[rows][columns];
-    Queue<State> queue = new ArrayDeque<>();
+    Queue<State> queue = new LinkedList<>();
     queue.offer(new State(0, 0, 1));
     seen[0][0] = true;
 
