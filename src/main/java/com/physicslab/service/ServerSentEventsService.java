@@ -17,6 +17,16 @@ import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 public class ServerSentEventsService {
 
   private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(2);
+  private final AtomicLong readingSequence = new AtomicLong();
+
+  public Map<String, Object> currentReading() {
+    long sequence = readingSequence.incrementAndGet();
+    double temperatureC = Math.round((21.5 + 2 * Math.sin(sequence / 3.0)) * 10.0) / 10.0;
+    return Map.of(
+        "sequence", sequence,
+        "timestamp", Instant.now().toString(),
+        "temperatureC", temperatureC);
+  }
 
   public SseEmitter stream() {
     SseEmitter emitter = new SseEmitter(0L);

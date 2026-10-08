@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/api/events")
 @CrossOrigin(origins = { "http://localhost:3000" })
@@ -20,5 +22,10 @@ public class ServerSentEventsController {
   @GetMapping(value = "/stream", produces = "text/event-stream")
   public SseEmitter stream() {
     return serverSentEventsService.stream();
+  }
+
+  @GetMapping("/reading")
+  public Map<String, Object> reading() {
+    return serverSentEventsService.currentReading();
   }
 }
